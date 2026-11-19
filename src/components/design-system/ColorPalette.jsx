@@ -1,7 +1,7 @@
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { THEME_COLORS } from "../../theme/palette.js";
-import Section from "./Section.jsx";
+import Section from "../ui/Section.jsx";
 
 const SHADES = ["light", "main", "dark"];
 

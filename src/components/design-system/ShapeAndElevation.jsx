@@ -1,5 +1,5 @@
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
-import Section from "./Section.jsx";
+import Section from "../ui/Section.jsx";
 
 // The elevation levels customized in theme/shadows.js.
 const ELEVATIONS = [0, 1, 2, 4, 8, 16, 24];

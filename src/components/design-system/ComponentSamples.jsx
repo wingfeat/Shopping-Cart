@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import Section from "./Section.jsx";
+import Section from "../ui/Section.jsx";
 
 const SEVERITIES = ["success", "info", "warning", "error"];
 

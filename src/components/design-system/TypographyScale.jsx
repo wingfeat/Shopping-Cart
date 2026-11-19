@@ -1,5 +1,5 @@
 import { Divider, Stack, Typography } from "@mui/material";
-import Section from "./Section.jsx";
+import Section from "../ui/Section.jsx";
 
 const VARIANTS = [
   "h1",
