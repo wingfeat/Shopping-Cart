@@ -63,7 +63,7 @@ export default function Layout() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar sx={{ gap: 1 }}>
           <Typography variant="h6" component="p" sx={{ flexGrow: 1 }}>
             Shopping cart
