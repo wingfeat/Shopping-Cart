@@ -1,32 +1,17 @@
-import { Add, Remove } from "@mui/icons-material";
 import {
   Button,
   Card,
   CardContent,
   CardMedia,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 
 import { useState } from "react";
-
-const CARD_BTN = {
-  minWidth: 0,
-  px: 1.5,
-  borderRadius: (theme) => theme.shape.borderPill,
-};
+import QuantitySelector from "./QuantitySelector";
 
 export default function ProductCard({ product, addToCart }) {
   const [productQuantity, setProductQuantity] = useState(1);
-
-  function handleQuantityChange(event) {
-    const value = Number(event.target.value);
-
-    if (Number.isInteger(value) && value >= 0) {
-      setProductQuantity(value);
-    }
-  }
 
   return (
     <Card
@@ -91,42 +76,10 @@ export default function ProductCard({ product, addToCart }) {
           }}
         >
           <Typography variant="body1">{product.price.toFixed(2)} €</Typography>
-          <Stack
-            direction="row"
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-          >
-            <Button
-              aria-label="Decrease quantity"
-              variant="outlined"
-              disabled={productQuantity <= 0}
-              onClick={() => setProductQuantity(productQuantity - 1)}
-              sx={CARD_BTN}
-            >
-              <Remove sx={{ fontSize: "12px" }} />
-            </Button>
-            <TextField
-              variant="standard"
-              value={productQuantity}
-              size="small"
-              onChange={handleQuantityChange}
-              sx={{ width: 36 }}
-              slotProps={{
-                input: { disableUnderline: true },
-                htmlInput: {
-                  style: { textAlign: "center" },
-                  inputMode: "numeric",
-                },
-              }}
-            />
-            <Button
-              aria-label="Increase quantity"
-              variant="outlined"
-              onClick={() => setProductQuantity(productQuantity + 1)}
-              sx={CARD_BTN}
-            >
-              <Add sx={{ fontSize: "12px" }} />
-            </Button>
-          </Stack>
+          <QuantitySelector
+            value={productQuantity}
+            onChange={setProductQuantity}
+          />
         </Stack>
         <Button
           variant="contained"
