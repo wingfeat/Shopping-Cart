@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Alert, Box, Grid, Stack, Typography } from "@mui/material";
 import { fetchProducts } from "../api/fetchProducts";
 import { useEffect, useState } from "react";
 import Section from "../components/ui/Section";
@@ -8,8 +8,8 @@ import { useOutletContext } from "react-router";
 export default function ShopPage() {
   const { addToCart } = useOutletContext();
   const [productList, setProductList] = useState([]);
-  // const [hasError, setHasError] = useState(false);
-  // const [isLoading, setIsLoading] = IuseState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -17,14 +17,45 @@ export default function ShopPage() {
         const newProducts = await fetchProducts();
         setProductList(newProducts);
       } catch (error) {
-        // setHasError(true);
+        setHasError(true);
         console.error("Error:", error);
       } finally {
-        // setIsLoading(false);
+        setIsLoading(false);
       }
     };
     loadProducts();
   }, []);
+
+  let content;
+  if (isLoading) {
+    content = (
+      <Typography
+        role="status"
+        sx={{
+          textAlign: "center",
+          color: "text.secondary",
+        }}
+      >
+        Loading articles...
+      </Typography>
+    );
+  } else if (hasError) {
+    content = (
+      <Alert variant="outlined" severity="error">
+        Unable to load articles!
+      </Alert>
+    );
+  } else {
+    content = (
+      <Grid container spacing={2}>
+        {productList.map((product) => (
+          <Grid key={product.id} size={{ xs: 12, sm: 6, md: 3 }}>
+            <ProductCard product={product} addToCart={addToCart} />
+          </Grid>
+        ))}
+      </Grid>
+    );
+  }
 
   return (
     <Stack spacing={8}>
@@ -32,15 +63,7 @@ export default function ShopPage() {
         <Typography variant="h1">Shop</Typography>
       </Box>
 
-      <Section title="Product list:">
-        <Grid container spacing={2}>
-          {productList.map((product) => (
-            <Grid key={product.id} size={{ xs: 12, sm: 4, md: 3 }}>
-              <ProductCard product={product} addToCart={addToCart} />
-            </Grid>
-          ))}
-        </Grid>
-      </Section>
+      <Section title="Product list:">{content}</Section>
     </Stack>
   );
 }
