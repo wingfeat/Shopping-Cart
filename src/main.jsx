@@ -10,7 +10,6 @@ const router = createBrowserRouter(routes);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      {/* enableColorScheme: native scrollbars and form controls follow the mode */}
       <CssBaseline enableColorScheme />
       <RouterProvider router={router} />
     </ThemeProvider>

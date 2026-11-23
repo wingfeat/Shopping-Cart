@@ -20,10 +20,8 @@ import { useState } from "react";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 
 const NAV_LINKS = [
-  { to: "/", label: "Home", display: "Home" },
-  { to: "/shop", label: "Shop", display: "Shop" },
+  { to: "/", label: "Shop", display: "Shop" },
   { to: "/your-cart", label: "Cart", display: <ShoppingCartOutlined /> },
-  { to: "/design-system", label: "Design System", display: "Design System" },
 ];
 
 export default function Layout() {
