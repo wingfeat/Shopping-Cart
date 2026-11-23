@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Stack,
@@ -62,7 +63,6 @@ export default function ProductCard({ product, addToCart }) {
             WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
-            mt: "auto",
           }}
         >
           {product.description}
@@ -75,20 +75,23 @@ export default function ProductCard({ product, addToCart }) {
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="body1">{product.price.toFixed(2)} €</Typography>
+          <Typography variant="body1">${product.price.toFixed(2)}</Typography>
           <QuantitySelector
             value={productQuantity}
             onChange={setProductQuantity}
           />
         </Stack>
+      </CardContent>
+      <CardActions>
         <Button
           variant="contained"
           disabled={productQuantity <= 0}
+          fullWidth
           onClick={() => addToCart(product, productQuantity)}
         >
           Add to cart
         </Button>
-      </CardContent>
+      </CardActions>
     </Card>
   );
 }

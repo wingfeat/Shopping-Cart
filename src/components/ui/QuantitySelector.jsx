@@ -1,11 +1,6 @@
 import { Add, Remove } from "@mui/icons-material";
 import { Button, Stack, TextField } from "@mui/material";
-
-const QUANTITY_SELECTOR = {
-  minWidth: 0,
-  px: 1.5,
-  borderRadius: (theme) => theme.shape.borderPill,
-};
+import { ROUND_BUTTON_SX } from "./constants";
 
 export default function QuantitySelector({ value, onChange }) {
   function handleQuantityChange(event) {
@@ -26,7 +21,7 @@ export default function QuantitySelector({ value, onChange }) {
         variant="outlined"
         disabled={value <= 0}
         onClick={() => onChange(value - 1)}
-        sx={QUANTITY_SELECTOR}
+        sx={ROUND_BUTTON_SX}
       >
         <Remove sx={{ fontSize: "12px" }} />
       </Button>
@@ -48,7 +43,7 @@ export default function QuantitySelector({ value, onChange }) {
         aria-label="Increase quantity"
         variant="outlined"
         onClick={() => onChange(value + 1)}
-        sx={QUANTITY_SELECTOR}
+        sx={ROUND_BUTTON_SX}
       >
         <Add sx={{ fontSize: "12px" }} />
       </Button>
